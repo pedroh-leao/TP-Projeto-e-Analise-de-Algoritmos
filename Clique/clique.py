@@ -4,7 +4,7 @@
 def leProblema():
     entrada = []
 
-    with open('entradaClique.txt', 'r') as arquivo:
+    with open('entradaClique3.txt', 'r') as arquivo:
         for linha in arquivo:
             colunas = linha.split(' ')
             
@@ -70,7 +70,7 @@ def branchAndBoundClique(solucao, i, problema, melhor):
 if __name__ == "__main__":
 
     problema = leProblema() # primeira linha = numero de vertices, demais linhas = matriz de adjacencia
-    melhorSolucao = [0] * problema[0][0]
+    melhorSolucao = geraSolucao(problema[0][0])
     solucaoInicial = [-1] * problema[0][0]
     
     melhorSolucao = branchAndBoundClique(solucaoInicial, 0, problema, melhorSolucao)
