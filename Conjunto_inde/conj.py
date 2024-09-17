@@ -1,10 +1,9 @@
 # Problema do conjunto independente deve ser resolvido por meio de redução com custo polinimial ao problema do Clique, já implementado usando branch and bound.
 
-
 def leProblema():
     entrada = []
 
-    with open('entradaClique3.txt', 'r') as arquivo:
+    with open('entrada1.txt', 'r') as arquivo:
         for linha in arquivo:
             colunas = linha.split(' ')
             
@@ -68,31 +67,47 @@ def branchAndBoundClique(solucao, i, problema, melhor):
         return melhor
 
 def geraComplemento(problema):
-    numVertices = problema[0][0]
-    complemento = [[numVertices]]
-    for i in range(1 , numVertices + 1):
-        linha = []
+    numVertices = problema[0][0]  # Número de vértices (primeira linha da matriz)
+    
+    # Inicializa a matriz de complemento
+    complemento = [[0] * numVertices for _ in range(numVertices)]
+    
+    # Preenche a matriz de complemento
+    for i in range(numVertices):
         for j in range(numVertices):
-            if i -1 == j:
-                linha.append(0)
-            else: 
-                linha.append(1 - problema[i][j])
-            complemento.append(linha)
+            if i != j:  # Não considerar a diagonal principal
+                complemento[i][j] = 1 - problema[i + 1][j]
+    
+    # Adiciona o número de vértices como a primeira linha da matriz de complemento
+    complemento.insert(0, [numVertices])
+    
     return complemento
+
+def print_grafo(matriz):
+    num_vertices = matriz[0][0]  # Número de vértices (primeira linha da matriz)
+    
+    print(f"Número de vértices: {num_vertices}")
+    
+    for i in range(1, num_vertices + 1):
+        linha = ' '.join(str(valor) for valor in matriz[i])
+        print(linha)
+
+def print_conjunto_independente_maximo(solucao):
+    indices = [i + 1 for i in range(len(solucao)) if solucao[i] == 1]
+    print("\nConjunto independente máximo:", end=" ")
+    print("{", end="")
+    print(", ".join(map(str, indices)), end="")
+    print("}")
 
 if __name__ == "__main__":
 
     problema = leProblema() 
-    complemento = geraComplemento()
+    complemento = geraComplemento(problema)
+    #print_grafo(complemento)
 
     melhorSolucao = geraSolucao(problema[0][0])
     solucaoInicial = [-1] * problema[0][0]
     
     melhorSolucao = branchAndBoundClique(solucaoInicial, 0, complemento, melhorSolucao)
 
-    print(melhorSolucao)
-
-    print("Vértices presentes no clique:")
-    for i in range(len(melhorSolucao)):
-        if(melhorSolucao[i] == 1):
-            print(i+1)
+    print_conjunto_independente_maximo(melhorSolucao)
