@@ -3,7 +3,7 @@
 
 def leProblema():
     # A fórmula booleana em CNF: cada sublista é uma cláusula
-    return [[1, -2, 3], [-1, 2], [2, -3]]
+    return [[1, 1, 1], [1, 0, -1], [2, -3]]
 
 def eConsistente(p, s):
     """Verifica se uma solução parcial satisfaz todas as cláusulas até o momento"""
@@ -38,13 +38,6 @@ def objetivo(p, s):
             return False
     return True
 
-def primeiroValor(p, i):
-    """Retorna o primeiro valor possível para uma variável (True)"""
-    return True
-
-def ultimoValor(p, i):
-    """Retorna o último valor possível para uma variável (False)"""
-    return False
 
 def BTOtimizacao(s, i, p):
     global melhor
