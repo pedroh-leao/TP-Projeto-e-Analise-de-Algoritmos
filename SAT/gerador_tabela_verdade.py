@@ -16,7 +16,6 @@ def le_problema(arquivo_entrada: str):
 
     return  qtd_variaveis, entrada
 
-
 def is_a_solution(p, s):
     # Verificando se é completa
     for variavel in s:
@@ -38,22 +37,17 @@ def is_a_solution(p, s):
             return False
     return True
 
+qtd_variaveis, p = le_problema("SAT/entrada10.txt")
 
-finished = False
-def backtrack(s, i, p):
-    if i >= len(s): return
+import itertools
 
-    global finished
-    if is_a_solution(p, s):
-        finished = True
-    else:
-        for j in [False, True]:
-            s[i] = j
-            backtrack(s, i + 1, p)
-            if finished:
-                return
+def generate_boolean_combinations(N):
+    return reversed(list(itertools.product([True, False], repeat=N)))
 
-qtd_variaveis, p = le_problema("SAT/entrada1.txt")
-s = [None] * qtd_variaveis
-backtrack(s, 0, p)
-print(finished, s)
+# Exemplo de uso:
+N = qtd_variaveis
+combinacoes = generate_boolean_combinations(N)
+for combinacao in combinacoes:
+    print(combinacao, is_a_solution(p, combinacao))
+
+

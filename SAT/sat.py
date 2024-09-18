@@ -1,12 +1,3 @@
-# Satisfabilidade – Dada uma formula booleana na forma normal conjuntiva, encontre uma
-# atribuição de valores-verdade às variáveis da fórmula que a torne verdadeira, ou informe
-# que não existe tal atribuição.
-
-# Variáveis: X1, X2, ... Xn
-# Domínio: Xi ∈ {0, 1}
-# Restrição: 
-# Solução: 
-
 def le_problema(arquivo_entrada: str):
     qtd_variaveis = None
     entrada = []
@@ -25,29 +16,12 @@ def le_problema(arquivo_entrada: str):
 
     return  qtd_variaveis, entrada
 
-
-# É preciso gerar um valor, mesmo que seja aleatório
-def geraSolucaoInicial(qtd_variaveis):
-    return [None] * qtd_variaveis
-
-# Verifica se a solução é completa percorrendo todos os elementos do vetor de solução
-# Se possuir um None, então a solução não é completa
-def eCompleta(s, i):
+def is_a_solution(p, s):
+    # Verificando se é completa
     for variavel in s:
         if variavel is None:
             return False
-    return True    
-    
-# Verifica se a solução parcial satisfaz a cláusula atual
-def eConsistente(p, s, i):
-    # for j in range (i):
-    #     if s[j] is not None:
-    #         return False
-    return True
 
-
-# Verifica se a solução satisfaz a fórmula completa
-def objetivo(p, s):
     for clausula in p:
         satisfeita = False
         # Toda clausula terá sempre três literais
@@ -61,36 +35,62 @@ def objetivo(p, s):
         # as disjunções se tornarão falsas
         if not satisfeita:
             return False
-
     return True
 
-
-# s: solução que está sendo montada
-# i: variavel a ser atualizada
-# p: problema ser resolvido
-def BTOtimizacao(s, i: int, p):
+def construct_candidates(s, i, p, dominio):
+    # Não é possível fazer mais testes, pois s já possui todos os valores preenchidos
+    # Vira uma busca exaustiva quando não existe uma solução
+    if i > len(s): return []
+       
+    candidatos = []
+    s_temp = s.copy()
     
-    if eCompleta(s, i) and objetivo(p, s):
-        global melhor 
-        melhor = s.copy()
-        global finished
+    for c in dominio:
+        satisfeita = False
+    
+        # Verifica todas as clausulas e testa se, até o i atual, elas são satisfeitas
+        # Verifica somente as variáveis que já foram atribuidas
+        s_temp[i-1] = c
+        for clausula in p:
+            for j in range(i):
+                if clausula[j] == 1:
+                    satisfeita = satisfeita or s_temp[j]
+                elif clausula[j] == 0:
+                    satisfeita = satisfeita or not s_temp[j]
+
+        if satisfeita:
+            candidatos.append(c)    
+    
+    return candidatos
+
+
+global finished
+def backtrack(s, i, p):
+    dominio = [False, True]
+    global finished
+
+    #print("Solucao parcial:", s)
+    if is_a_solution(p, s):
         finished = True
-        print("terminou")
-
     else:
-        for j in [False, True]:
-            s[i] = j
-            if (eConsistente(p, s, i)):
-                BTOtimizacao(s, i+1, p)
+        i = i + 1
+        candidates = construct_candidates(s, i, p, dominio)
+        for cand in candidates:
+            s[i-1] = cand
+            backtrack(s, i, p)
             if finished:
-                return
-            s[i] = None
+                return 
+            s[i-1] = None
 
-finished = False
-qtd_variaveis, p = le_problema("SAT/entrada2.txt")
-melhor = geraSolucaoInicial(qtd_variaveis)
-inicial = [None] * qtd_variaveis
+for i in range(9):
+    print(f"Iniciando problema {i+1}")
+    finished = False
+    qtd_variaveis, p = le_problema(f"SAT/entrada{i+1}.txt")
+    s = [None] * qtd_variaveis
+    backtrack(s, 0, p)
 
-BTOtimizacao(inicial, 0, p)
-print(finished)
-print(melhor)
+    if finished:
+        print("Solução encontrada:", s)
+    else:
+        print("Solução não encontrada")
+    print("\n")
