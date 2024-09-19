@@ -14,8 +14,17 @@ def leProblema():
 
     return entrada
 
-def geraSolucao(numVertices):
-    solucao = [1] + [0] * (numVertices - 1)
+def geraSolucao(problema):
+    solucao = [0] * problema[0][0]
+
+    for i in range(problema[0][0]):
+        for j in range(problema[0][0]):
+            if(problema[i+1][j] == 1):
+                solucao[i] = 1
+                solucao[j] = 1
+                return solucao
+
+    solucao[0] = 1
     return solucao
 
 def eCompleta(solucao, problema):
@@ -105,8 +114,8 @@ if __name__ == "__main__":
     complemento = geraComplemento(problema)
     #print_grafo(complemento)
 
-    melhorSolucao = geraSolucao(problema[0][0])
-    solucaoInicial = [-1] * problema[0][0]
+    melhorSolucao = geraSolucao(complemento)
+    solucaoInicial = [-1] * complemento[0][0]
     
     melhorSolucao = branchAndBoundClique(solucaoInicial, 0, complemento, melhorSolucao)
 
