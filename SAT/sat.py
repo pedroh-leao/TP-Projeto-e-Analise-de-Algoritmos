@@ -91,7 +91,7 @@ def backtrack(s, i, p):
     dominio = [False, True]
     global finished
 
-    print("Solucao parcial:", s)
+    #print("Solucao parcial:", s)
     if is_a_solution(p, s):
         finished = True
     else:

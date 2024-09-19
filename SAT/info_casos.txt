@@ -1,5 +1,5 @@
-Caso 1: (Não satisfazivel)
-(A ∨ B ∨ C) (A ∨ ~B) (B ∨ ~C) (~A ∨ C) (~A ∨ ~B ∨ ~C)
+Caso 1: (Não satisfazi∨el)
+(A ∨ B ∨ C) ∧ (A ∨ ~B) ∧ (B ∨ ~C) ∧ (~A ∨ C) ∧ (~A ∨ ~B ∨ ~C)
 
 Caso 2:
 (A ∨ B ∨ C) ∧ (~A ∨ ~B ∨ ~C)
@@ -7,8 +7,8 @@ Caso 2:
 Caso 3:
 (A ∨ ~B ∨ C) ∧ (~A ∨ B ∨ D) ∧ (B ∨ ~C ∨ ~D) ∧ (~A ∨ ~B ∨ D)
 
-Caso 4:
-(B v C) (~A v C) (~A v B) (~B v ~C) (A v C) (A v B)
+Caso 4: (Não satisfazi∨el)
+(B ∨ C) ∧ (~A ∨ C) ∧ (~A ∨ B) ∧ (~B ∨ ~C) ∧ (A ∨ C) ∧ (A ∨ B)
 
 Caso 5:
 ( A ∨ B ∨ C ∨ D ) ∧ ( ∼A ∨ ∼B ∨ C ) ∧ ( A ∨ ∼C ∨ D ) ∧ ( ∼B ∨ D )
@@ -22,7 +22,8 @@ Caso 7:
 Caso 8:
 (A ∨ B) ∧ (~A ∨ ~B) ∧ (A ∨ C) ∧ (~C) ∧ (B ∨ D) ∧ (~D)
 
-Caso 9: não satisfazivel
+Caso 9: não satisfazi∨el
+(~A ∨ B) ∧ (A ∨ ~B) ∧ (A ∨ B) ∧ (~A ∨ ~B)
 
-
-
+Caso 10: 
+(~A)
