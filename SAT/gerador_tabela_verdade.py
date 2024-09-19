@@ -37,7 +37,7 @@ def is_a_solution(p, s):
             return False
     return True
 
-qtd_variaveis, p = le_problema("SAT/entrada10.txt")
+qtd_variaveis, p = le_problema("SAT/entrada8.txt")
 
 import itertools
 
