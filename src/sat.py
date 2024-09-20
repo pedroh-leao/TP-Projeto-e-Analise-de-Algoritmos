@@ -115,5 +115,5 @@ def SAT(caminho_problema):
 if __name__ == "__main__":
     for i in range(10):
         print(f"Problema {i+1}")
-        SAT(f"./entrada{i+1}.txt")
+        SAT(f"src/entradas/SAT/entrada{i+1}.txt")
         print("\n")
