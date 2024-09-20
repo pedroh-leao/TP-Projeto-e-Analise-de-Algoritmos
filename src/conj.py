@@ -42,7 +42,7 @@ if __name__ == "__main__":
     inicio = time.time()
     problema = leProblema("src/entradas/Conjunto_inde/entrada1.txt") 
     complemento = geraComplemento(problema)
-    print_grafo(complemento)
+    #print_grafo(complemento)
 
     melhorSolucao = geraSolucao(complemento)
     solucaoInicial = [-1] * complemento[0][0]
