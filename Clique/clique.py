@@ -1,10 +1,11 @@
 # Problema de Clique usando Branch and Bound
 # Clique – Dado um grafo, encontre um conjunto maximo de vertices tal que todas as possiveis arestas entre eles estejam presentes.
+import time
 
 def leProblema():
     entrada = []
 
-    with open('entradaClique3.txt', 'r') as arquivo:
+    with open('entradaClique.txt', 'r') as arquivo:
         for linha in arquivo:
             colunas = linha.split(' ')
             
@@ -77,12 +78,13 @@ def branchAndBoundClique(solucao, i, problema, melhor):
         return melhor
 
 if __name__ == "__main__":
-
+    inicio = time.time()
     problema = leProblema() # primeira linha = numero de vertices, demais linhas = matriz de adjacencia
     melhorSolucao = geraSolucao(problema)
     solucaoInicial = [-1] * problema[0][0]
     
     melhorSolucao = branchAndBoundClique(solucaoInicial, 0, problema, melhorSolucao)
+    fim = time.time()
 
     print(melhorSolucao)
 
@@ -90,3 +92,5 @@ if __name__ == "__main__":
     for i in range(len(melhorSolucao)):
         if(melhorSolucao[i] == 1):
             print(i+1)
+
+    print(f"Tempo de execução: {fim-inicio:.6f} segundos")
