@@ -1,9 +1,11 @@
 # Problema do conjunto independente deve ser resolvido por meio de redução com custo polinimial ao problema do Clique, já implementado usando branch and bound.
 
+import time
+
 def leProblema():
     entrada = []
 
-    with open('entrada3.txt', 'r') as arquivo:
+    with open('entrada1.txt', 'r') as arquivo:
         for linha in arquivo:
             colunas = linha.split(' ')
             
@@ -110,13 +112,16 @@ def print_conjunto_independente_maximo(solucao):
 
 if __name__ == "__main__":
 
+    inicio = time.time()
     problema = leProblema() 
     complemento = geraComplemento(problema)
-    #print_grafo(complemento)
+    print_grafo(complemento)
 
     melhorSolucao = geraSolucao(complemento)
     solucaoInicial = [-1] * complemento[0][0]
     
     melhorSolucao = branchAndBoundClique(solucaoInicial, 0, complemento, melhorSolucao)
+    fim = time.time()
 
     print_conjunto_independente_maximo(melhorSolucao)
+    print(f"Tempo de execução: {fim-inicio:.6f} segundos")
