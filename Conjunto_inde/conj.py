@@ -3,7 +3,7 @@
 def leProblema():
     entrada = []
 
-    with open('entrada1.txt', 'r') as arquivo:
+    with open('entrada3.txt', 'r') as arquivo:
         for linha in arquivo:
             colunas = linha.split(' ')
             
