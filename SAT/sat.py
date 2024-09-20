@@ -1,7 +1,5 @@
-# O tamanho de uma cláusula é a soma de todos o literais diferentes de -1,
-# ou seja, que estão presentes
-def tamanho_clausula(clausula):
-    return sum(1 for literal in clausula if literal != -1)
+import time
+
 
 def le_problema(arquivo_entrada: str):
     with open(arquivo_entrada, 'r') as arquivo:
@@ -10,24 +8,23 @@ def le_problema(arquivo_entrada: str):
         
         for linha in arquivo:
             clausula = [int(coluna) for coluna in linha.strip().split()]
-            entrada.append({
-                'len': tamanho_clausula(clausula),
-                'literais': clausula
-            })
+            entrada.append(clausula)
 
     return qtd_variaveis, entrada
 
-def is_a_solution(p, s):
+def solucao_inicial(qtd_variaveis: int):
+    return [None] * qtd_variaveis
+
+def verificar_solucao(problema, solucao):
     # Verificando se é completa
-    for variavel in s:
+    for variavel in solucao:
         if variavel is None:
             return False
 
-    for clausula in p:
-        clausula = clausula['literais']
+    for clausula in problema:
         satisfeita = False
         # Toda clausula terá sempre três literais
-        for variavel, valor_atual in zip(clausula, s):
+        for variavel, valor_atual in zip(clausula, solucao):
             if variavel == 1:
                 satisfeita = satisfeita or valor_atual
             elif variavel == 0:
@@ -50,12 +47,12 @@ def clausula_computavel(i, clausula):
             return False
     
 
-def construct_candidates(s, i, p, dominio):
+def construir_candidatos(solucao, i, problema, dominio):
     # Não é possível fazer mais testes, pois s já possui todos os valores preenchidos
-    if i > len(s): return []
+    if i > len(solucao): return []
        
     candidatos = dominio.copy()
-    s_temp = s.copy()
+    s_temp = solucao.copy()
     
     # Testando cada valor do domínio
     for c in dominio:
@@ -63,14 +60,11 @@ def construct_candidates(s, i, p, dominio):
 
         # Verifica se todas as clausulas possíveis podem ser satisfeitas com o valor candidato atual
         # Se uma cláusula for falsa, já cancela o candidato atual        
-        for cl in p:
+        for clausula in problema:
             satisfeita = False  
-            clausula = cl['literais']
 
-            # Se foi atribuido menos valores à solução do que o tamanho da cláusula, ela ainda não pode ser verificada
-            # Garantindo que a cláusula tem tamanho igual ou menor que a quantidade de itens mapeados,
-            #   agora verificamos se os itens após o i-ésimo não são -1, porque, se forem, também não pode ser verificada
-            if cl['len'] <= i and clausula_computavel(i, clausula):
+            # Verificamos se os itens após o i-ésimo não são -1, porque, se forem, nao podemos verificar a clausula ainda
+            if clausula_computavel(i, clausula):
                 for variavel_atual, literal in enumerate(clausula):
                     if literal == 1:
                         satisfeita = satisfeita or s_temp[variavel_atual]
@@ -87,33 +81,43 @@ def construct_candidates(s, i, p, dominio):
 
 
 global finished
-def backtrack(s, i, p):
+def backtrack(solucao, i, problema):
     dominio = [False, True]
     global finished
 
-    #print("Solucao parcial:", s)
-    if is_a_solution(p, s):
+    #print("Solucao parcial:", solucao)
+    if verificar_solucao(problema, solucao):
         finished = True
     else:
         i = i + 1
-        candidates = construct_candidates(s, i, p, dominio)
-        for cand in candidates:
-            s[i-1] = cand
-            backtrack(s, i, p)
+        candidatos = construir_candidatos(solucao, i, problema, dominio)
+        for c in candidatos:
+            solucao[i-1] = c
+            backtrack(solucao, i, problema)
             if finished:
                 return 
-            s[i-1] = None
+            solucao[i-1] = None
 
 
-for i in range(10):
-    print(f"Iniciando problema {i+1}")
+def SAT(caminho_problema):
+    global finished
     finished = False
-    qtd_variaveis, p = le_problema(f"SAT/entrada{i+1}.txt")
-    s = [None] * qtd_variaveis
-    backtrack(s, 0, p)
-
+    inicio = time.time()
+    qtd_variaveis, problema = le_problema(caminho_problema)
+    solucao = solucao_inicial(qtd_variaveis)
+    backtrack(solucao, 0, problema)
+    fim = time.time()
     if finished:
-        print("Solução encontrada:", s)
+        print("Solução encontrada:", solucao)
     else:
         print("Solução não encontrada")
-    print("\n")
+    
+    tempo_execucao = fim - inicio
+    print(f"Tempo de execução: {tempo_execucao:.6f} segundos")
+
+
+if __name__ == "__main__":
+    for i in range(10):
+        print(f"Problema {i+1}")
+        SAT(f"SAT/entrada{i+1}.txt")
+        print("\n")
