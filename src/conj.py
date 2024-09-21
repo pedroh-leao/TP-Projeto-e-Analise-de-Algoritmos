@@ -37,12 +37,10 @@ def print_conjunto_independente_maximo(solucao):
     print(", ".join(map(str, indices)), end="")
     print("}")
 
-if __name__ == "__main__":
-
+def ConjuntoIndependenteMaximo(caminho_entrada):
     inicio = time.time()
-    problema = leProblema("src/entradas/Conjunto_inde/entrada1.txt") 
+    problema = leProblema(caminho_entrada) 
     complemento = geraComplemento(problema)
-    #print_grafo(complemento)
 
     melhorSolucao = geraSolucao(complemento)
     solucaoInicial = [-1] * complemento[0][0]
@@ -52,3 +50,9 @@ if __name__ == "__main__":
 
     print_conjunto_independente_maximo(melhorSolucao)
     print(f"Tempo de execução: {fim-inicio:.6f} segundos")
+
+if __name__ == "__main__":
+    for i in range(3):
+        print(f"Problema: {i+1}")
+        ConjuntoIndependenteMaximo(f"src/entradas/Conjunto_inde/entrada{i+1}.txt")
+        print("\n")

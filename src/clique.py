@@ -2,7 +2,7 @@
 # Clique – Dado um grafo, encontre um conjunto maximo de vertices tal que todas as possiveis arestas entre eles estejam presentes.
 import time
 
-def leProblema(caminho_entrada = 'src/entradas/Clique/entradaClique.txt'):
+def leProblema(caminho_entrada):
     entrada = []
 
     with open(caminho_entrada, 'r') as arquivo:
@@ -77,9 +77,9 @@ def branchAndBoundClique(solucao, i, problema, melhor):
         
         return melhor
 
-if __name__ == "__main__":
+def Clique(caminho_entrada):
     inicio = time.time()
-    problema = leProblema() # primeira linha = numero de vertices, demais linhas = matriz de adjacencia
+    problema = leProblema(caminho_entrada) # primeira linha = numero de vertices, demais linhas = matriz de adjacencia
     melhorSolucao = geraSolucao(problema)
     solucaoInicial = [-1] * problema[0][0]
     
@@ -94,3 +94,9 @@ if __name__ == "__main__":
             print(i+1)
 
     print(f"Tempo de execução: {fim-inicio:.6f} segundos")
+
+if __name__ == "__main__":
+    for i in range(3):
+        print(f"Problema: {i+1}")
+        Clique(f"src/entradas/Clique/entradaClique{i+1}.txt")
+        print("\n")
