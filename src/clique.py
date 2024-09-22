@@ -29,12 +29,8 @@ def geraSolucao(problema):
     solucao[0] = 1
     return solucao
 
-def eCompleta(solucao, problema):
-    for i in range(problema[0][0]):
-        if solucao[i] == -1:
-            return False
-        
-    return True
+def eCompleta(solucao):
+    return not -1 in solucao
 
 def eConsistente(solucao, problema, i):
     verticesNaSolucao = []
@@ -62,7 +58,7 @@ def ePromissora(solucao, problema, melhor, i):
     return numVerticesMaximoSolucao > numVerticesMelhor
 
 def branchAndBoundClique(solucao, i, problema, melhor):
-    if eCompleta(solucao, problema):
+    if eCompleta(solucao):
         melhor[:] = solucao
         return melhor
     
@@ -98,5 +94,5 @@ def Clique(caminho_entrada):
 if __name__ == "__main__":
     for i in range(3):
         print(f"Problema: {i+1}")
-        Clique(f"src/entradas/Clique/entradaClique{i+1}.txt")
+        Clique(f"entradas/Clique/entradaClique{i+1}.txt")
         print("\n")
