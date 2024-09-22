@@ -322,20 +322,28 @@ def clausula_computavel(i, clausula, qtd_variaveis):
             Tempo de execução: 0.000151 segundos
         \end{tcolorbox}
     \end{frame}
-
-
-\section{Referências}
-\begin{frame}{Referências utilizadas}
-    
-    \begin{justify}
-        \begin{itemize}
-           \item MANOLOPOULOS, Y.; NANOPOULOS, A.; PAPADOPOULOS, A. N.; THEODORIDIS, Y. R-Trees: Theory and Applications. Springer, 2006. 
-           \item KAO, M.-Y. Encyclopedia of Algorithms. Springer, 2008.
-           \item Introduction to R tree. GeeksforGeeks. Disponível em: <https://www.geeksforgeeks.org/introduction-to-r-tree/>. Acesso em: 17 ago. 2023.
-           \item WIKIPEDIA CONTRIBUTORS. R-tree. Wikipedia. Disponível em: <https://en.wikipedia.org/wiki/R-tree>. Acesso em: 17 ago. 2023.
-        \end{itemize}
-    \end{justify}
-\end{frame}
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    \begin{frame}{Exemplo instância}
+        \begin{tcolorbox}[title=Entrada da instância, width=\linewidth, fontupper=\ttfamily,  halign=flush left]
+            Variáveis: 18 \\
+            Cláusulas: 4096
+        \end{tcolorbox}
+        \begin{tcolorbox}[title=Saída da instância, width=\linewidth, fontupper=\ttfamily, halign=flush left]
+            Solução encontrada: [False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, True, False, False] \\
+            Tempo de execução: 0.111010 segundos
+        \end{tcolorbox}
+    \end{frame}
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    \begin{frame}{Exemplo instância}
+        \begin{tcolorbox}[title=Entrada da instância, width=\linewidth, fontupper=\ttfamily,  halign=flush left]
+            Variáveis: 10 \\
+            Cláusulas: 59049
+        \end{tcolorbox}
+        \begin{tcolorbox}[title=Saída da instância, width=\linewidth, fontupper=\ttfamily, halign=flush left]
+            Solução não encontrada \\
+            Tempo de execução: 56.896429 segundos
+        \end{tcolorbox}
+    \end{frame}
 
 
 

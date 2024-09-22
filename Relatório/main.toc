@@ -18,14 +18,19 @@
 \contentsline {subsection}{\numberline {4.1}Verificar solução final}{15}{subsection.4.1}%
 \contentsline {subsection}{\numberline {4.2}Gerar candidatos}{15}{subsection.4.2}%
 \contentsline {subsection}{\numberline {4.3}Exemplos de instância}{16}{subsection.4.3}%
-\contentsline {subsubsection}{\numberline {4.3.1}Instância 1}{16}{subsubsection.4.3.1}%
+\contentsline {subsubsection}{\numberline {4.3.1}Instância 1}{17}{subsubsection.4.3.1}%
 \contentsline {subsubsection}{\numberline {4.3.2}Instância 2}{17}{subsubsection.4.3.2}%
 \contentsline {subsubsection}{\numberline {4.3.3}Instância 3}{17}{subsubsection.4.3.3}%
 \contentsline {subsubsection}{\numberline {4.3.4}Instância 4}{18}{subsubsection.4.3.4}%
 \contentsline {subsubsection}{\numberline {4.3.5}Instância 5}{18}{subsubsection.4.3.5}%
-\contentsline {subsubsection}{\numberline {4.3.6}Instância 6}{18}{subsubsection.4.3.6}%
+\contentsline {subsubsection}{\numberline {4.3.6}Instância 6}{19}{subsubsection.4.3.6}%
 \contentsline {subsubsection}{\numberline {4.3.7}Instância 7}{19}{subsubsection.4.3.7}%
 \contentsline {subsubsection}{\numberline {4.3.8}Instância 8}{19}{subsubsection.4.3.8}%
 \contentsline {subsubsection}{\numberline {4.3.9}Instância 9}{20}{subsubsection.4.3.9}%
 \contentsline {subsubsection}{\numberline {4.3.10}Instância 10}{20}{subsubsection.4.3.10}%
-\contentsline {section}{\numberline {5}Considerações Finais}{21}{section.5}%
+\contentsline {subsubsection}{\numberline {4.3.11}Instância 11}{21}{subsubsection.4.3.11}%
+\contentsline {subsubsection}{\numberline {4.3.12}Instância 12}{21}{subsubsection.4.3.12}%
+\contentsline {subsubsection}{\numberline {4.3.13}Instância 13}{21}{subsubsection.4.3.13}%
+\contentsline {subsubsection}{\numberline {4.3.14}Instância 14}{21}{subsubsection.4.3.14}%
+\contentsline {subsubsection}{\numberline {4.3.15}Instância 15}{22}{subsubsection.4.3.15}%
+\contentsline {section}{\numberline {5}Considerações Finais}{23}{section.5}%

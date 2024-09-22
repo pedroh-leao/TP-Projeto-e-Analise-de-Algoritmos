@@ -1,9 +1,9 @@
-PWD /home/matheus/TP-Projeto-e-Analise-de-Algoritmos/Relatório Projeto e Análise de Algoritmos
+PWD /home/matheus/TP-Projeto-e-Analise-de-Algoritmos/Relatório
 INPUT /etc/texmf/web2c/texmf.cnf
 INPUT /usr/share/texmf/web2c/texmf.cnf
 INPUT /usr/share/texlive/texmf-dist/web2c/texmf.cnf
 INPUT /home/matheus/.texlive2021/texmf-var/web2c/pdftex/pdflatex.fmt
-INPUT /home/matheus/TP-Projeto-e-Analise-de-Algoritmos/Relatório Projeto e Análise de Algoritmos/main.tex
+INPUT /home/matheus/TP-Projeto-e-Analise-de-Algoritmos/Relatório/main.tex
 OUTPUT main.log
 INPUT /usr/share/texlive/texmf-dist/tex/latex/base/article.cls
 INPUT /usr/share/texlive/texmf-dist/tex/latex/base/article.cls

@@ -1,15 +1,5 @@
-import time
-
-def le_problema(arquivo_entrada: str):
-    with open(arquivo_entrada, 'r') as arquivo:
-        qtd_variaveis = int(arquivo.readline().strip())
-        entrada = []
-        
-        for linha in arquivo:
-            clausula = [int(coluna) for coluna in linha.strip().split()]
-            entrada.append(clausula)
-
-    return qtd_variaveis, entrada
+import random
+import itertools
 
 
 def solucao_inicial(qtd_variaveis: int):
@@ -95,25 +85,30 @@ def backtrack(solucao, i, problema):
 
     return False
 
-
-def SAT(caminho_problema):
-    inicio = time.time()
-    qtd_variaveis, problema = le_problema(caminho_problema)
-    solucao = solucao_inicial(qtd_variaveis)
+def SAT(problema, n):
+    solucao = solucao_inicial(n)
     solucao_encontrada = backtrack(solucao, 0, problema)
-    fim = time.time()
-
-    if solucao_encontrada:
-        print("Solução encontrada:", solucao)
-    else:
-        print("Solução não encontrada")
-    
-    tempo_execucao = fim - inicio
-    print(f"Tempo de execução: {tempo_execucao:.6f} segundos")
+    return solucao_encontrada
 
 
-if __name__ == "__main__":
-    for i in range(15):
-        print(f"Problema {i+1}")
-        SAT(f"src/entradas/SAT/entrada{i+1}.txt")
-        print("\n")
+
+n = random.randint(15, 20)
+clausulas = 4096
+
+print(n, clausulas)
+
+while True:
+    problema = []
+    for i in range(clausulas):
+        literais = []
+        for j in range(n):
+            literal = random.randint(-1, 1)
+            literais.append(literal)
+        problema.append(literais) 
+
+    if SAT(problema, n):
+        for linha in problema:
+            linha = [ str(l) for l in linha]
+            print(" ".join(linha))
+        break
+

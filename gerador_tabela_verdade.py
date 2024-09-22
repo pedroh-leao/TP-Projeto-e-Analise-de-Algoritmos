@@ -37,7 +37,7 @@ def is_a_solution(p, s):
             return False
     return True
 
-qtd_variaveis, p = le_problema("SAT/entrada8.txt")
+qtd_variaveis, p = le_problema("src/entradas/SAT/teste5.txt")
 
 import itertools
 
@@ -48,6 +48,6 @@ def generate_boolean_combinations(N):
 N = qtd_variaveis
 combinacoes = generate_boolean_combinations(N)
 for combinacao in combinacoes:
-    print(combinacao, is_a_solution(p, combinacao))
+    print(is_a_solution(p, combinacao))
 
 
