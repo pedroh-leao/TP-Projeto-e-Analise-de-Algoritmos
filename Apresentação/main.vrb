@@ -14,4 +14,5 @@ def clausula_computavel(i, clausula, qtd_variaveis):
     for j in range(i, qtd_variaveis):
         if clausula[j-1] == -1:
             return False
+    return True
         \end{lstlisting}

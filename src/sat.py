@@ -43,6 +43,7 @@ def clausula_computavel(i, clausula, qtd_variaveis):
     for j in range(i, qtd_variaveis):
         if clausula[j-1] == -1:
             return False
+    return True
     
 
 def construir_candidatos(solucao, i, problema, dominio):
@@ -73,7 +74,7 @@ def construir_candidatos(solucao, i, problema, dominio):
 
             # Se nao satisfez a clausula atual, nao podera satisfazer as proximas, entao o ramo deste candidato pode ser removido
             if not satisfeita:
-                candidatos.pop(0)
+                candidatos.remove(c)
                 break
     return candidatos
 
@@ -115,5 +116,5 @@ def SAT(caminho_problema):
 if __name__ == "__main__":
     for i in range(15):
         print(f"Problema {i+1}")
-        SAT(f"src/entradas/SAT/entrada{i+1}.txt")
+        SAT(f"entradas/SAT/entrada{i+1}.txt")
         print("\n")

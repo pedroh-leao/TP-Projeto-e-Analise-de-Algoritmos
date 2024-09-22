@@ -67,7 +67,7 @@ def geraSolucao(problema):
     \par Por fim, a função principal é chamada para encontrar a melhor solução, ou seja, o clique máximo, utilizando branch and bound como estratégia.
 \begin{lstlisting}[caption={Função que encontra o clique máximo através de branch and bound},label={lst:codClique2},language=Python]
 def branchAndBoundClique(solucao, i, problema, melhor):
-    if eCompleta(solucao, problema):
+    if eCompleta(solucao):
         melhor[:] = solucao
         return melhor
     
@@ -433,6 +433,8 @@ def clausula_computavel(i, clausula, qtd_variaveis):
     for j in range(i, qtd_variaveis):
         if clausula[j-1] == -1:
             return False
+    return True
+
  \end{lstlisting}
     \par Vale ressaltar que, a presença ou ausência das variáveis anteriores ao valor \verb|i| não são necessárias verificações, pois garantimos que elas já foram atribuidas em passos anteriores do \textit{backtracking}.
 
@@ -457,7 +459,7 @@ def clausula_computavel(i, clausula, qtd_variaveis):
         
         \begin{tcolorbox}[title=Saída da instância 1, width=\linewidth, fontupper=\ttfamily, halign=flush left]
             Solução não encontrada \\
-            Tempo de execução: 0.000503 segundos \\  
+            Tempo de execução: 0.008312 segundos 
         \end{tcolorbox}
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     \subsubsection{Instância 2}
@@ -471,8 +473,8 @@ def clausula_computavel(i, clausula, qtd_variaveis):
         \end{tcolorbox}
         
         \begin{tcolorbox}[title=Saída da instância 2, width=\linewidth, fontupper=\ttfamily, halign=flush left]
-            Solução encontrada: [False, False, True] \\
-            Tempo de execução: 0.000090 segundos   \\
+            Solução encontrada: [True, False, False] \\
+            Tempo de execução: 0.020761 segundos
         \end{tcolorbox}
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -488,7 +490,7 @@ def clausula_computavel(i, clausula, qtd_variaveis):
         \end{tcolorbox}
         \begin{tcolorbox}[title=Saída da instância 3, width=\linewidth, fontupper=\ttfamily, halign=flush left]
             Solução encontrada: [False, False, False, False] \\
-            Tempo de execução: 0.000175 segundos
+            Tempo de execução: 0.016887 segundos
         \end{tcolorbox}
 
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -506,7 +508,7 @@ def clausula_computavel(i, clausula, qtd_variaveis):
         \end{tcolorbox}
         \begin{tcolorbox}[title=Saída da instância 4, width=\linewidth, fontupper=\ttfamily, halign=flush left]
             Solução não encontrada \\
-            Tempo de execução: 0.000192 segundos
+            Tempo de execução: 0.000742 segundos
         \end{tcolorbox}
 
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -521,8 +523,8 @@ def clausula_computavel(i, clausula, qtd_variaveis):
             -1 0 -1 1 \\
         \end{tcolorbox}
         \begin{tcolorbox}[title=Saída da instância 5, width=\linewidth, fontupper=\ttfamily, halign=flush left]
-            Solução encontrada: [False, False, False, True] \\
-            Tempo de execução: 0.000134 segundos
+            Solução encontrada: [True, False, False, False] \\
+            Tempo de execução: 0.000785 segundos
         \end{tcolorbox}
 
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -541,13 +543,13 @@ def clausula_computavel(i, clausula, qtd_variaveis):
             1 1 0 0 \\
         \end{tcolorbox}
         \begin{tcolorbox}[title=Saída da instância 6, width=\linewidth, fontupper=\ttfamily, halign=flush left]
-            Solução encontrada: [False, True, False, True] \\
-            Tempo de execução: 0.000151 segundos
+            Solução encontrada: [True, False, False, False] \\
+            Tempo de execução: 0.000695 segundos
         \end{tcolorbox}
     
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     \subsubsection{Instância 7}
-        \((A \lor B \lor \neg C \lor D \lor E) \land (\neg A \lor \neg B \lor C \lor \neg E) \land (A \lor \neg C \lor \neg D \lor E) \land (\neg A \lor B \lor D) \land (C \lor \neg D \lor \neg E)\)
+        \[(A \lor B \lor \neg C \lor D \lor E) \land (\neg A \lor \neg B \lor C \lor \neg E) \land (A \lor \neg C \lor \neg D \lor E) \land (\neg A \lor B \lor D) \land (C \lor \neg D \lor \neg E)\]
         \begin{tcolorbox}[title=Entrada da instância 7, width=\linewidth, fontupper=\ttfamily,  halign=flush left]
             5 \\
             1 1 0 1 1 \\
@@ -558,11 +560,12 @@ def clausula_computavel(i, clausula, qtd_variaveis):
         \end{tcolorbox}
         \begin{tcolorbox}[title=Saída da instância 7, width=\linewidth, fontupper=\ttfamily, halign=flush left]
             Solução encontrada: [False, False, False, False, False] \\
-            Tempo de execução: 0.000105 segundos
+            Tempo de execução: 0.000692 segundos
         \end{tcolorbox}
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     \subsubsection{Instância 8}
-        \((A \lor B \lor C) \land (\neg A \lor \neg B \lor \neg C) \land (A \lor \neg B \lor D) \land (\neg A \lor B \lor \neg D) \land (A \lor \neg C \lor D) \land (\neg A \lor C \lor \neg D) \land (\neg A \lor \neg B \lor C \lor D) \land (A \lor B \lor \neg C \lor \neg D)\)
+        \[( A \lor B) \land ( \neg A \lor \neg B) \land ( A \lor C) \land ( \neg C) \land ( \neg A \lor B \lor \neg C \lor D) \land ( \neg D)\]
+
         \begin{tcolorbox}[title=Entrada da instância 8, width=\linewidth, fontupper=\ttfamily,  halign=flush left]
             4 \\
             1 1 -1 -1 \\
@@ -574,7 +577,7 @@ def clausula_computavel(i, clausula, qtd_variaveis):
         \end{tcolorbox}
         \begin{tcolorbox}[title=Saída da instância 8, width=\linewidth, fontupper=\ttfamily, halign=flush left]
             Solução encontrada: [True, False, False, False] \\
-            Tempo de execução: 0.000208 segundos
+            Tempo de execução: 0.000697 segundos
         \end{tcolorbox}
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
     \subsubsection{Instância 9}
@@ -584,7 +587,7 @@ def clausula_computavel(i, clausula, qtd_variaveis):
         \end{tcolorbox}
         \begin{tcolorbox}[title=Saída da instância 9, width=\linewidth, fontupper=\ttfamily, halign=flush left]
             Solução não encontrada \\
-            Tempo de execução: 0.023756 segundos
+            Tempo de execução: 0.028538 segundos
         \end{tcolorbox}
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     \subsubsection{Instância 10}
@@ -594,7 +597,7 @@ def clausula_computavel(i, clausula, qtd_variaveis):
         \end{tcolorbox}
         \begin{tcolorbox}[title=Saída da instância 10, width=\linewidth, fontupper=\ttfamily, halign=flush left]
             Solução encontrada: [False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False] \\
-            Tempo de execução: 0.005474 segundos
+            Tempo de execução: 0.016032 segundos
         \end{tcolorbox}
 
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -605,7 +608,7 @@ def clausula_computavel(i, clausula, qtd_variaveis):
         \end{tcolorbox}
         \begin{tcolorbox}[title=Saída da instância 11, width=\linewidth, fontupper=\ttfamily, halign=flush left]
             Solução não encontrada \\
-            Tempo de execução: 0.548656 segundos
+            Tempo de execução: 0.601039 segundos
         \end{tcolorbox}
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     \subsubsection{Instância 12}
@@ -615,7 +618,7 @@ def clausula_computavel(i, clausula, qtd_variaveis):
         \end{tcolorbox}
         \begin{tcolorbox}[title=Saída da instância 12, width=\linewidth, fontupper=\ttfamily, halign=flush left]
             Solução não encontrada \\
-            Tempo de execução: 0.014132 segundos
+            Tempo de execução: 0.027363 segundos
         \end{tcolorbox}
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     \subsubsection{Instância 13}
@@ -625,7 +628,7 @@ def clausula_computavel(i, clausula, qtd_variaveis):
         \end{tcolorbox}
         \begin{tcolorbox}[title=Saída da instância 13, width=\linewidth, fontupper=\ttfamily, halign=flush left]
             Solução não encontrada \\
-            Tempo de execução: 0.045222 segundos
+            Tempo de execução: 0.072359 segundos
         \end{tcolorbox}
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     \subsubsection{Instância 14}
@@ -635,7 +638,7 @@ def clausula_computavel(i, clausula, qtd_variaveis):
         \end{tcolorbox}
         \begin{tcolorbox}[title=Saída da instância 14, width=\linewidth, fontupper=\ttfamily, halign=flush left]
             Solução encontrada: [False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, True, False, False] \\
-            Tempo de execução: 0.111010 segundos
+            Tempo de execução: 0.168715 segundos
         \end{tcolorbox}
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     \subsubsection{Instância 15}
@@ -645,7 +648,7 @@ def clausula_computavel(i, clausula, qtd_variaveis):
         \end{tcolorbox}
         \begin{tcolorbox}[title=Saída da instância 15, width=\linewidth, fontupper=\ttfamily, halign=flush left]
             Solução não encontrada \\
-            Tempo de execução: 56.896429 segundos
+            Tempo de execução: 0.205896 segundos
         \end{tcolorbox}
 \clearpage
 

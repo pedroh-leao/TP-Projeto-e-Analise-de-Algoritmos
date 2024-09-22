@@ -65,7 +65,7 @@ def geraSolucao(problema):
     \begin{frame}[fragile]{Função que executa o branch and bound}
         \begin{lstlisting}
 def branchAndBoundClique(solucao, i, problema, melhor):
-    if eCompleta(solucao, problema):
+    if eCompleta(solucao):
         melhor[:] = solucao
         return melhor
     
@@ -274,7 +274,7 @@ def construir_candidatos(solucao, i, problema, dominio):
                         satisfeita = satisfeita or not s_temp[variavel_atual]
             else:continue
             if not satisfeita:
-                candidatos.pop(0)
+                candidatos.remove(c)
                 break
     return candidatos
         \end{lstlisting}
@@ -296,6 +296,7 @@ def clausula_computavel(i, clausula, qtd_variaveis):
     for j in range(i, qtd_variaveis):
         if clausula[j-1] == -1:
             return False
+    return True
         \end{lstlisting}
     \end{frame}
 
@@ -305,7 +306,7 @@ def clausula_computavel(i, clausula, qtd_variaveis):
         
         \begin{tcolorbox}[title=Saída da instância, width=\linewidth, fontupper=\ttfamily, halign=flush left]
             Solução não encontrada \\
-            Tempo de execução: 0.000503 segundos \\  
+            Tempo de execução: 0.008312 segundos  
         \end{tcolorbox}
     \end{frame}
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -318,8 +319,8 @@ def clausula_computavel(i, clausula, qtd_variaveis):
         \end{center}
         
         \begin{tcolorbox}[title=Saída da instância, width=\linewidth, fontupper=\ttfamily, halign=flush left]
-            Solução encontrada: [False, True, False, True] \\
-            Tempo de execução: 0.000151 segundos
+            Solução encontrada: [True, False, False, False] \\
+            Tempo de execução: 0.000695 segundos
         \end{tcolorbox}
     \end{frame}
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -330,7 +331,7 @@ def clausula_computavel(i, clausula, qtd_variaveis):
         \end{tcolorbox}
         \begin{tcolorbox}[title=Saída da instância, width=\linewidth, fontupper=\ttfamily, halign=flush left]
             Solução encontrada: [False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, True, False, False] \\
-            Tempo de execução: 0.111010 segundos
+            Tempo de execução: 0.168715 segundos
         \end{tcolorbox}
     \end{frame}
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -341,7 +342,7 @@ def clausula_computavel(i, clausula, qtd_variaveis):
         \end{tcolorbox}
         \begin{tcolorbox}[title=Saída da instância, width=\linewidth, fontupper=\ttfamily, halign=flush left]
             Solução não encontrada \\
-            Tempo de execução: 56.896429 segundos
+            Tempo de execução: 0.205896 segundos
         \end{tcolorbox}
     \end{frame}
 
