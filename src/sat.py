@@ -115,6 +115,6 @@ def SAT(caminho_problema):
 
 if __name__ == "__main__":
     for i in range(15):
-        print(f"Problema {i+1}")
+        print(f"Instância {i+1}")
         SAT(f"entradas/SAT/entrada{i+1}.txt")
         print("\n")

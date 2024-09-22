@@ -53,6 +53,6 @@ def ConjuntoIndependenteMaximo(caminho_entrada):
 
 if __name__ == "__main__":
     for i in range(3):
-        print(f"Problema: {i+1}")
+        print(f"Instância: {i+1}")
         ConjuntoIndependenteMaximo(f"entradas/Conjunto_inde/entrada{i+1}.txt")
         print("\n")
